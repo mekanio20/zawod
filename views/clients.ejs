@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Müşderiler</title>
+  <link rel="stylesheet" href="/css/client.css">
+</head>
+
+<body>
+  <section class="client__table">
+
+    <h1 class="heading">Müşderiler</h1>
+
+    <div class="client__col">
+      <table>
+        <thead>
+          <th>Edaranyň ady</th>
+          <th>Harydyň göwrümi</th>
+          <th>Bellige alynan wagt</th>
+          <th>Taýýar edilmeli wagt</th>
+          <th>Telefon nomeri</th>
+          <th>Pozmak</th>
+        </thead>
+        <tbody>
+          <% clients.forEach(item=> { %>
+            <tr>
+              <td>
+                <%= item.name %>
+              </td>
+              <td>
+                <%= item.volume %>
+              </td>
+              <td>
+                <%= item.b_time %>
+              </td>
+              <td>
+                <%= item.e_time %>
+              </td>
+              <td>
+                <%= item.phone %>
+              </td>
+              <td><a href="/delete/<%= item.id %>" class="delete">poz</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <button class="btn" type="button"
+        onclick="document.getElementById('modalElem').style.display='block'">Goşmak</button>
+    </div>
+    <div id="modalElem" class="modal">
+      <form class="modal__form animate" action="/clients" method="post">
+        <div class="modal__content">
+          <label>Edaranyň ady</label>
+          <input name="name" class="modal__input" type="text" required>
+
+          <label>Harydyň göwrümi</label>
+          <input name="volume" class="modal__input" type="text" required>
+
+          <label>Bellige alynan wagt</label>
+          <input name="b_time" class="modal__input" type="date" required>
+
+          <label>Taýýar edilmeli wagt</label>
+          <input name="e_time" class="modal__input" type="date" required>
+
+          <label>Telefon nomeri</label>
+          <input name="phone" class="modal__input" type="text" required>
+        </div>
+
+        <div class="modal__content" style="background-color:#f1f1f1">
+          <button class="modal__button cancelbtn" type="button"
+            onclick="document.getElementById('modalElem').style.display='none'">Çykmak</button>
+          <button class="modal__button submitbtn" type="submit" id="add_btn">Goşmak</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+
+</html>
